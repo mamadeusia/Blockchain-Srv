@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package BlockchainSrv;
+
+option go_package = "./proto;BlockchainSrv";
+
+service BlockchainSrv {
+	rpc Propose(ProposeRequest) returns (ProposeResponse) {}
+	rpc Proofs(ProofsRequest) returns (ProofsResponse) {}
+}
+
+message ProposeRequest {
+	string description = 1;
+	string candidateID = 2; 
+	string candidate = 3 ; 
+	string tokenOffer = 4 ; 
+	repeated string validators = 5 ; 
+}
+message ProposeResponse {
+	string txHash = 1;
+	string proposeID = 2 ; 
+}
+
+message ProofsRequest {
+	string voterAddress = 1 ; 
+	string proposeID = 2 ; 
+}
+message ProofsResponse {
+	repeated bytes proofs = 1 ;  
+}
